@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples Vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="v1" id="value1">
+        <select v-model="type" name="" id="">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" v-model="v2" id="value2">
+        <button v-on:click="sum()">Calcular</button>
+
+        <p v-if="(message.length == 0)">Nenhuma conta efetuada</p>
+        <p v-else>{{message}}</p>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                v1: 0,
+                v2: 0,
+                type: "+",
+                message: ""
+            },
+
+            methods: {
+                sum() {
+                    if (this.v1 < 0 || this.v2 < 0) {
+                        return alert("Informe valores positivos");
+                    }
+
+                    if (this.type == "+") {
+                        const total = Number.parseInt(this.v1) + Number.parseInt(this.v2);
+                        this.message = "Resultado: " + total;
+                        return;
+                    } else if (this.type == "-") {
+                        const total = Number.parseInt(this.v1) - Number.parseInt(this.v2);
+                        this.message ="Resultado: " + total;
+                        return;
+                    } else if (this.type == "*") {
+                        const total = Number.parseInt(this.v1) * Number.parseInt(this.v2);
+                        this.message = "Resultado: " + total;
+                        return;
+                    } else if (this.type == "/") {
+                        const total = Number.parseInt(this.v1) / Number.parseInt(this.v2);
+                        this.message = "Resultado: " + total;
+                        return;
+                    } else {
+                        alert("Operador inválido");
+                        return;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
